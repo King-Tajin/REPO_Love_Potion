@@ -1,0 +1,47 @@
+{
+  "glug_glug": {
+    "subtitle": "subtitles.glug_glug",
+    "sounds": [
+      {
+        "name": "repo_love_potion:glug_glug",
+        "stream": false
+      }
+    ]
+  },
+  "bluh_bluh": {
+    "subtitle": "subtitles.bluh_bluh",
+    "sounds": [
+      {
+        "name": "repo_love_potion:bloxburg-news",
+        "stream": false
+      }
+    ]
+  },
+  "i_love_song": {
+    "subtitle": "subtitles.i_love_song",
+    "sounds": [
+      {
+        "name": "repo_love_potion:i_love",
+        "stream": true
+      }
+    ]
+  },
+  "holy_moly": {
+    "subtitle": "subtitles.holy_moly",
+    "sounds": [
+      {
+        "name": "repo_love_potion:holy-moly-emoji",
+        "stream": false
+      }
+    ]
+  },
+  "yipee": {
+    "subtitle": "subtitles.yipee",
+    "sounds": [
+      {
+        "name": "repo_love_potion:yippee-tbh",
+        "stream": false
+      }
+    ]
+  }
+}
