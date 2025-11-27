@@ -25,7 +25,6 @@ public class RepoLovePotionModTabs {
 			tabData.accept(RepoLovePotionItems.HEART_JAR.get());
 			tabData.accept(RepoLovePotionItems.UNPOLISHED_LOVE_CORE.get());
 			tabData.accept(RepoLovePotionItems.LOVE_DUST.get());
-			tabData.accept(RepoLovePotionItems.INCOMPLETE_UNPOLISHED_LOVE_CORE.get());
 		}
 	}
 }

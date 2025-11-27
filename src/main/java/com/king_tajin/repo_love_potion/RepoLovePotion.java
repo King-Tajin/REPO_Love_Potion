@@ -1,7 +1,7 @@
 package com.king_tajin.repo_love_potion;
 
-import com.roland.repolovepotion.events.*;
-import com.roland.repolovepotion.init.*;
+import com.king_tajin.repo_love_potion.events.*;
+import com.king_tajin.repo_love_potion.init.*;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
@@ -30,17 +30,15 @@ public class RepoLovePotion {
 	public RepoLovePotion(IEventBus modEventBus) {
 		NeoForge.EVENT_BUS.register(this);
 		modEventBus.addListener(this::registerNetworking);
-		RepoLovePotionModSounds.REGISTRY.register(modEventBus);
+		RepoLovePotionSounds.REGISTRY.register(modEventBus);
 
-		RepoLovePotionModItems.REGISTRY.register(modEventBus);
+		RepoLovePotionItems.REGISTRY.register(modEventBus);
 
 		RepoLovePotionModTabs.REGISTRY.register(modEventBus);
 
-		RepoLovePotionModMobEffects.REGISTRY.register(modEventBus);
+		RepoLovePotionMobEffects.REGISTRY.register(modEventBus);
 
-		RepoLovePotionModVillagerProfessions.PROFESSIONS.register(modEventBus);
-
-		RepoLovePotionModParticleTypes.REGISTRY.register(modEventBus);
+		RepoLovePotionParticleTypes.REGISTRY.register(modEventBus);
 
 		NeoForge.EVENT_BUS.register(PlayerDeathHandler.class);
 

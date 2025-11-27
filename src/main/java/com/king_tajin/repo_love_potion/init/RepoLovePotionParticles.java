@@ -1,6 +1,6 @@
 package com.king_tajin.repo_love_potion.init;
 
-import com.roland.repolovepotion.client.particle.LoveParticle;
+import com.king_tajin.repo_love_potion.client.particle.LoveParticle;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;

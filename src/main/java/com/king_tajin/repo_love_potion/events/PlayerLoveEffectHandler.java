@@ -1,7 +1,7 @@
 package com.king_tajin.repo_love_potion.events;
 
 
-import com.roland.repolovepotion.init.RepoLovePotionModMobEffects;
+import com.king_tajin.repo_love_potion.init.RepoLovePotionMobEffects;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -24,7 +24,7 @@ public class PlayerLoveEffectHandler {
         Level level = player.level();
 
         if (level.isClientSide) return;
-        if (!player.hasEffect(RepoLovePotionModMobEffects.LOVE)) return;
+        if (!player.hasEffect(RepoLovePotionMobEffects.LOVE)) return;
 
         long gameTime = level.getGameTime();
         double radius = 12.0D;

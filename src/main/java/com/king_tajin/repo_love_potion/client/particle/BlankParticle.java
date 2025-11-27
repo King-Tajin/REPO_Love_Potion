@@ -1,5 +1,5 @@
 
-package com.king_tajin.repo_love_potion.particle;
+package com.king_tajin.repo_love_potion.client.particle;
 
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
@@ -9,36 +9,36 @@ import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
-public class LoveParticle extends TextureSheetParticle {
-	public static LoveParticleProvider provider(SpriteSet spriteSet) {
-		return new LoveParticleProvider(spriteSet);
+public class BlankParticle extends TextureSheetParticle {
+	public static BlankParticleProvider provider(SpriteSet spriteSet) {
+		return new BlankParticleProvider(spriteSet);
 	}
 
-	public static class LoveParticleProvider implements ParticleProvider<SimpleParticleType> {
+	public static class BlankParticleProvider implements ParticleProvider<SimpleParticleType> {
 		private final SpriteSet spriteSet;
 
-		public LoveParticleProvider(SpriteSet spriteSet) {
+		public BlankParticleProvider(SpriteSet spriteSet) {
 			this.spriteSet = spriteSet;
 		}
 
 		public Particle createParticle(@NotNull SimpleParticleType typeIn, @NotNull ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-			return new LoveParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed, this.spriteSet);
+			return new BlankParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed, this.spriteSet);
 		}
 	}
 	private final SpriteSet spriteSet;
 
-	protected LoveParticle(ClientLevel world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, SpriteSet textures) {
+	protected BlankParticle(ClientLevel world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, SpriteSet textures) {
 			super(world, x, y, z, velocityX, velocityY, velocityZ);
 			this.spriteSet = textures;
-			this.quadSize *= 1.5F;
-			this.lifetime = 128;
+			this.quadSize *= 1F;
+			this.lifetime = 16;
 			this.setSpriteFromAge(textures);
 		}
 
 
 	@Override
 	public @NotNull ParticleRenderType getRenderType() {
-		return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
+		return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
 	}
 
 	@Override

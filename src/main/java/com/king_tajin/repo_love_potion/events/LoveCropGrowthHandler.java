@@ -1,7 +1,7 @@
 package com.king_tajin.repo_love_potion.events;
 
-import com.roland.repolovepotion.init.RepoLovePotionModMobEffects;
-import com.roland.repolovepotion.init.RepoLovePotionModSounds;
+import com.king_tajin.repo_love_potion.init.RepoLovePotionMobEffects;
+import com.king_tajin.repo_love_potion.init.RepoLovePotionSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -22,7 +22,7 @@ public class LoveCropGrowthHandler {
     public static void onPlayerTick(PlayerTickEvent.Post event) {
         if (event.getEntity().level().isClientSide()) return;
 
-        if (!event.getEntity().hasEffect(RepoLovePotionModMobEffects.LOVE)) return;
+        if (!event.getEntity().hasEffect(RepoLovePotionMobEffects.LOVE)) return;
 
         ServerLevel level = (ServerLevel) event.getEntity().level();
         BlockPos center = event.getEntity().blockPosition();
@@ -41,7 +41,7 @@ public class LoveCropGrowthHandler {
                                         crop.performBonemeal(level, level.random, pos, state);
                                         level.sendParticles(ParticleTypes.HEART, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5,
                                                 3, 0.2, 0.2, 0.2, 0.02);
-                                        level.playSound(null, pos, RepoLovePotionModSounds.GLUG_GLUG.get(), SoundSource.BLOCKS,
+                                        level.playSound(null, pos, RepoLovePotionSounds.GLUG_GLUG.get(), SoundSource.BLOCKS,
                                                 0.75f, 1.0f + (level.random.nextFloat() * 0.5f - 0.25f));
                                     }
                                 }
