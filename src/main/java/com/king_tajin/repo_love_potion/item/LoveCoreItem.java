@@ -1,7 +1,7 @@
 
 package com.king_tajin.repo_love_potion.item;
 
-import com.king_tajin.repo_love_potion.init.RepoLovePotionModMobEffects;
+import com.king_tajin.repo_love_potion.init.RepoLovePotionMobEffects;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.food.FoodProperties;
@@ -30,11 +30,11 @@ public class LoveCoreItem extends Item {
 		final int EFFECT_DURATION = 6900;
 		if (!entity.level().isClientSide()) {
 
-            MobEffectInstance loveEffect = new MobEffectInstance(RepoLovePotionModMobEffects.LOVE, EFFECT_DURATION, 0, false, true, true);
+            MobEffectInstance loveEffect = new MobEffectInstance(RepoLovePotionMobEffects.LOVE, EFFECT_DURATION, 0, false, true, true);
 
-			MobEffectInstance currentSelf = entity.getEffect(RepoLovePotionModMobEffects.LOVE);
+			MobEffectInstance currentSelf = entity.getEffect(RepoLovePotionMobEffects.LOVE);
 			if (currentSelf == null || currentSelf.getDuration() <= EFFECT_DURATION) {
-				entity.removeEffect(RepoLovePotionModMobEffects.LOVE);
+				entity.removeEffect(RepoLovePotionMobEffects.LOVE);
 				entity.addEffect(loveEffect);
 			}
 		}

@@ -8,7 +8,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-public class RepoLovePotionModSounds {
+public class RepoLovePotionSounds {
 	public static final DeferredRegister<SoundEvent> REGISTRY = DeferredRegister.create(Registries.SOUND_EVENT, RepoLovePotion.MODID);
 	public static final DeferredHolder<SoundEvent, SoundEvent> GLUG_GLUG = REGISTRY.register("glug_glug", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("repo_love_potion", "glug_glug")));
 	public static final DeferredHolder<SoundEvent, SoundEvent> BLUH_BLUH = REGISTRY.register("bluh_bluh", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("repo_love_potion", "bluh_bluh")));

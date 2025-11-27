@@ -1,8 +1,8 @@
 package com.king_tajin.repo_love_potion.effects;
 
 
-import com.king_tajin.repo_love_potion.init.RepoLovePotionModParticleTypes;
-import com.king_tajin.repo_love_potion.init.RepoLovePotionModSounds;
+import com.king_tajin.repo_love_potion.init.RepoLovePotionParticleTypes;
+import com.king_tajin.repo_love_potion.init.RepoLovePotionSounds;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.server.level.ServerLevel;
@@ -31,7 +31,7 @@ public class LoveMobEffect extends ExtendedMobEffect {
 
     @Override
     public @NotNull ParticleOptions createParticleOptions(@NotNull MobEffectInstance mobEffectInstance) {
-        return RepoLovePotionModParticleTypes.BLANK_PARTICLE.get();
+        return RepoLovePotionParticleTypes.BLANK_PARTICLE.get();
     }
 
     @Override
@@ -52,7 +52,7 @@ public class LoveMobEffect extends ExtendedMobEffect {
             level.playSound(
                 null,
                 entity.blockPosition(),
-                RepoLovePotionModSounds.YIPEE.get(),
+                RepoLovePotionSounds.YIPEE.get(),
                 SoundSource.PLAYERS,
                 1.0F,
                 1.0F + level.random.nextFloat() * 0.6F
@@ -60,7 +60,7 @@ public class LoveMobEffect extends ExtendedMobEffect {
         }
 
         if (!level.isClientSide && level.random.nextFloat() < 0.1F) {
-            ((ServerLevel)level).sendParticles(RepoLovePotionModParticleTypes.LOVE_PARTICLE.get(),
+            ((ServerLevel)level).sendParticles(RepoLovePotionParticleTypes.LOVE_PARTICLE.get(),
                     entity.getX(), entity.getY() + 1.0D, entity.getZ(),
                     3, 0.1D, 0.1D, 0.1D, 0.01D);
         }
@@ -96,7 +96,7 @@ public class LoveMobEffect extends ExtendedMobEffect {
             level.playSound(
                     null,
                     entity.blockPosition(),
-                    RepoLovePotionModSounds.HOLY_MOLY.get(),
+                    RepoLovePotionSounds.HOLY_MOLY.get(),
                     SoundSource.PLAYERS,
                     1.0F,
                     1.0F + level.random.nextFloat() * 0.9F - 0.45F
@@ -126,7 +126,7 @@ public class LoveMobEffect extends ExtendedMobEffect {
             level.playSound(
                     null,
                     entity.blockPosition(),
-                    RepoLovePotionModSounds.HOLY_MOLY.get(),
+                    RepoLovePotionSounds.HOLY_MOLY.get(),
                     SoundSource.PLAYERS,
                     1.0F,
                     1.0F + level.random.nextFloat() * 0.9F - 0.45F

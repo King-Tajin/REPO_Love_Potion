@@ -1,6 +1,6 @@
 package com.king_tajin.repo_love_potion.events;
 
-import com.king_tajin.repo_love_potion.init.RepoLovePotionModMobEffects;
+import com.king_tajin.repo_love_potion.init.RepoLovePotionMobEffects;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.player.Player;
@@ -21,7 +21,7 @@ public class CreeperLoveAIHandler {
                 14.0F,
                 1.4D,
                 2.2D,
-                player -> player.hasEffect(RepoLovePotionModMobEffects.LOVE)
+                player -> player.hasEffect(RepoLovePotionMobEffects.LOVE)
         ));
     }
 }

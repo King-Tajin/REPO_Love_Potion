@@ -7,10 +7,10 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 
 @EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-public class RepoLovePotionModParticles {
+public class RepoLovePotionParticles {
 	@SubscribeEvent
 	public static void registerParticles(RegisterParticleProvidersEvent event) {
-		event.registerSpriteSet(RepoLovePotionModParticleTypes.LOVE_PARTICLE.get(), LoveParticle::provider);
-		event.registerSpriteSet(RepoLovePotionModParticleTypes.BLANK_PARTICLE.get(), LoveParticle::provider);
+		event.registerSpriteSet(RepoLovePotionParticleTypes.LOVE_PARTICLE.get(), LoveParticle::provider);
+		event.registerSpriteSet(RepoLovePotionParticleTypes.BLANK_PARTICLE.get(), LoveParticle::provider);
 	}
 }

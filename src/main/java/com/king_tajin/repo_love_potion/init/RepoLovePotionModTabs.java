@@ -17,15 +17,15 @@ public class RepoLovePotionModTabs {
 	@SubscribeEvent
 	public static void buildTabContentsVanilla(BuildCreativeModeTabContentsEvent tabData) {
 		if (tabData.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
-			tabData.accept(RepoLovePotionModItems.LOVE_POTION.get());
-			tabData.accept(RepoLovePotionModItems.I_LOVE_DISC.get());
+			tabData.accept(RepoLovePotionItems.LOVE_POTION.get());
+			tabData.accept(RepoLovePotionItems.I_LOVE_DISC.get());
 		} else if (tabData.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
-			tabData.accept(RepoLovePotionModItems.LOVE_CORE.get());
+			tabData.accept(RepoLovePotionItems.LOVE_CORE.get());
 		} else if (tabData.getTabKey() == CreativeModeTabs.INGREDIENTS) {
-			tabData.accept(RepoLovePotionModItems.HEART_JAR.get());
-			tabData.accept(RepoLovePotionModItems.UNPOLISHED_LOVE_CORE.get());
-			tabData.accept(RepoLovePotionModItems.LOVE_DUST.get());
-			tabData.accept(RepoLovePotionModItems.INCOMPLETE_UNPOLISHED_LOVE_CORE.get());
+			tabData.accept(RepoLovePotionItems.HEART_JAR.get());
+			tabData.accept(RepoLovePotionItems.UNPOLISHED_LOVE_CORE.get());
+			tabData.accept(RepoLovePotionItems.LOVE_DUST.get());
+			tabData.accept(RepoLovePotionItems.INCOMPLETE_UNPOLISHED_LOVE_CORE.get());
 		}
 	}
 }

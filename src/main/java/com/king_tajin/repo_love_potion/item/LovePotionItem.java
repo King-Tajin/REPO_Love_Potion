@@ -1,7 +1,7 @@
 
 package com.king_tajin.repo_love_potion.item;
 
-import com.king_tajin.repo_love_potion.init.RepoLovePotionModMobEffects;
+import com.king_tajin.repo_love_potion.init.RepoLovePotionMobEffects;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -1170,19 +1170,19 @@ public class LovePotionItem extends Item {
 
 			int thresholdTicks = EFFECT_DURATION + 40;
 
-			MobEffectInstance loveEffect = new MobEffectInstance(RepoLovePotionModMobEffects.LOVE, EFFECT_DURATION, 0, false, true, true);
-			MobEffectInstance loveEffect2 = new MobEffectInstance(RepoLovePotionModMobEffects.LOVE, EFFECT_DURATION - 30, 0, false, true, true);
+			MobEffectInstance loveEffect = new MobEffectInstance(RepoLovePotionMobEffects.LOVE, EFFECT_DURATION, 0, false, true, true);
+			MobEffectInstance loveEffect2 = new MobEffectInstance(RepoLovePotionMobEffects.LOVE, EFFECT_DURATION - 30, 0, false, true, true);
 
-			MobEffectInstance currentSelf = serverPlayer.getEffect(RepoLovePotionModMobEffects.LOVE);
+			MobEffectInstance currentSelf = serverPlayer.getEffect(RepoLovePotionMobEffects.LOVE);
 			if (currentSelf == null || currentSelf.getDuration() <= thresholdTicks) {
-				serverPlayer.removeEffect(RepoLovePotionModMobEffects.LOVE);
+				serverPlayer.removeEffect(RepoLovePotionMobEffects.LOVE);
 				serverPlayer.addEffect(loveEffect);
 			}
 
 			if (nearest != null) {
-				MobEffectInstance currentNearest = nearest.getEffect(RepoLovePotionModMobEffects.LOVE);
+				MobEffectInstance currentNearest = nearest.getEffect(RepoLovePotionMobEffects.LOVE);
 				if (currentNearest == null || currentNearest.getDuration() <= thresholdTicks) {
-					nearest.removeEffect(RepoLovePotionModMobEffects.LOVE);
+					nearest.removeEffect(RepoLovePotionMobEffects.LOVE);
 					nearest.addEffect(loveEffect2);
 				}
 			}

@@ -8,7 +8,7 @@ import net.minecraft.world.effect.MobEffect;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-public class RepoLovePotionModMobEffects {
+public class RepoLovePotionMobEffects {
 	public static final DeferredRegister<MobEffect> REGISTRY = DeferredRegister.create(Registries.MOB_EFFECT, RepoLovePotion.MODID);
 	public static final DeferredHolder<MobEffect, MobEffect> LOVE = REGISTRY.register("love", LoveMobEffect::new);
 }
