@@ -133,7 +133,7 @@ public class LovePotionItem extends Item {
             String intensifier = INTENSIFIERS[RANDOM.nextInt(INTENSIFIERS.length)];
             String adjective = ADJECTIVES[RANDOM.nextInt(ADJECTIVES.length)];
             String noun = NOUNS[RANDOM.nextInt(NOUNS.length)];
-			String arkCreature = ARK_CREATURE[RANDOM.nextInt(ARK_CREATURE.length)];
+			String mob = MOB[RANDOM.nextInt(MOB.length)];
 
             String playerName = (nearest != null) ? nearest.getName().getString() : DEFAULT_PLAYER_NAME;
 
@@ -149,7 +149,7 @@ public class LovePotionItem extends Item {
                     "transitiveVerb", Component.literal(transitiveVerb).withStyle(ChatFormatting.DARK_PURPLE, ChatFormatting.BOLD),
                     "adjective", Component.literal(adjective).withStyle(ChatFormatting.DARK_PURPLE, ChatFormatting.BOLD),
                     "noun", Component.literal(noun).withStyle(ChatFormatting.DARK_PURPLE, ChatFormatting.BOLD),
-					"arkCreature", Component.literal(arkCreature).withStyle(ChatFormatting.BLUE, ChatFormatting.BOLD)
+					"mob", Component.literal(mob).withStyle(ChatFormatting.BLUE, ChatFormatting.BOLD)
                 ),
                 ChatFormatting.DARK_PURPLE
             );
