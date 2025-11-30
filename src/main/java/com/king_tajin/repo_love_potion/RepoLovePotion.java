@@ -47,6 +47,8 @@ public class RepoLovePotion {
 
         NeoForge.EVENT_BUS.register(ChargedCreeperDropHandler.class);
 
+        NeoForge.EVENT_BUS.register(LovePotionBrewingRecipe.class);
+
         modEventBus.addListener(RepoLovePotionModTabs::buildTabContentsVanilla);
         modEventBus.addListener(RepoLovePotionParticles::onRegisterParticles);
 

@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#H#",
+    "DPQ",
+    "#F#"
+  ],
+  "key": {
+    "#": {
+      "item": "repo_love_potion:love_dust"
+    },
+    "H": {
+      "item": "minecraft:honeycomb"
+    },
+    "D": {
+      "item": "minecraft:dragon_breath"
+    },
+    "P": {
+      "item": "minecraft:poppy"
+    },
+    "Q": {
+      "item": "minecraft:diamond"
+    },
+    "F": {
+      "item": "minecraft:heart_of_the_sea"
+    }
+  },
+  "result": {
+    "id": "repo_love_potion:unpolished_love_core",
+    "count": 1
+  }
+}
