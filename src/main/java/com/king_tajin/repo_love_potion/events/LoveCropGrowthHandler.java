@@ -16,7 +16,7 @@ public class LoveCropGrowthHandler {
 
     private static final int RADIUS = 18;
     private static final int GROWTH_ATTEMPTS = 1;
-    private static final double GROWTH_CHANCE = 0.015;
+    private static final double GROWTH_CHANCE = 0.002;
 
     @SubscribeEvent
     public static void onPlayerTick(PlayerTickEvent.Post event) {

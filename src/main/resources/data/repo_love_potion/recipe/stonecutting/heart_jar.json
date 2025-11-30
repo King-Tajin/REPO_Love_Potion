@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:glass"
+  },
+  "result": {
+    "id": "repo_love_potion:heart_jar",
+    "count": 1
+  }
+}

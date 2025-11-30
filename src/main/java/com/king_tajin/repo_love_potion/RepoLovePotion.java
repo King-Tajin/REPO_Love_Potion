@@ -15,8 +15,6 @@ import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.handling.IPayloadHandler;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -24,7 +22,6 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 @Mod("repo_love_potion")
 public class RepoLovePotion {
-	public static final Logger LOGGER = LogManager.getLogger(RepoLovePotion.class);
 	public static final String MODID = "repo_love_potion";
 
 	public RepoLovePotion(IEventBus modEventBus) {
@@ -47,6 +44,9 @@ public class RepoLovePotion {
 		NeoForge.EVENT_BUS.register(LoveCropGrowthHandler.class);
 
 		NeoForge.EVENT_BUS.register(CreeperLoveAIHandler.class);
+
+        modEventBus.addListener(RepoLovePotionModTabs::buildTabContentsVanilla);
+        modEventBus.addListener(RepoLovePotionParticles::onRegisterParticles);
 
 	}
 

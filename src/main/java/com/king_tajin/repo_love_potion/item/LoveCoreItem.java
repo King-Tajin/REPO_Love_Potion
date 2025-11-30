@@ -27,7 +27,7 @@ public class LoveCoreItem extends Item {
 	@Override
 	public @NotNull ItemStack finishUsingItem(@NotNull ItemStack itemstack, @NotNull Level world, @NotNull LivingEntity entity) {
 		ItemStack retrieval = super.finishUsingItem(itemstack, world, entity);
-		final int EFFECT_DURATION = 6900;
+		final int EFFECT_DURATION = 6000;
 		if (!entity.level().isClientSide()) {
 
             MobEffectInstance loveEffect = new MobEffectInstance(RepoLovePotionMobEffects.LOVE, EFFECT_DURATION, 0, false, true, true);

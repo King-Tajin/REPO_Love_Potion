@@ -265,9 +265,19 @@ public class WordLists {
             "Just {intransitiveVerb} about how {adjective} {playerName} is.",
             "{playerName} makes my day {intensifier} awesome.",
             "{playerName}! {playerName}! {playerName}! {playerName}! {playerName}! {playerName}! {playerName}! {playerName}! {playerName}!",
-            "I love {playerName} more than {mob}.",
-            "{mob} isn't that good compared to {playerName}!",
-            "{playerName} could easily beat {mob}."
+            "I love {playerName} more than a {mob}.",
+            "A {mob} isn't that good compared to {playerName}!",
+            "{playerName} could easily beat a {mob}.",
+            "I would defeat a {mob} for {playerName}.",
+            "Hey {playerName}, are you TNT, because you make my heart go BOOM!",
+            "{playerName} must be a piece of flint and steel because they STEEL my breath away!",
+            "{playerName} must be a torch, because they light up my world!",
+            "Hey {playerName}, are you a block of dirt? Because I dig you.",
+            "Am I lagging, or did {playerName}'s smile just make time stand still?",
+            "{playerName}... Redstone is red, Lazuli is blue, you’re as hot as the lava I fell into.",
+            "{playerName} must be a health potion…because when I’m with them, my hearts are always full.",
+            "Is {playerName} from the mines? Because I found a gem.",
+            "{playerName}, are you holding wheat? Because you attract me.",
+            "Is {playerName} an enchanted sword? Because they just swept me off my feet with one hit."
     };
-
 }

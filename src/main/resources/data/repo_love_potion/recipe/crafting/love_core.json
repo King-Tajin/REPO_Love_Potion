@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#A#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:water_bucket"
+    },
+    "A": {
+      "item": "repo_love_potion:unpolished_love_core"
+    }
+  },
+  "result": {
+    "id": "repo_love_potion:love_core",
+    "count": 1
+  }
+}

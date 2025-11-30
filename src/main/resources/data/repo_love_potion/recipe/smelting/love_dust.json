@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "minecraft:redstone"
+  },
+  "result": {
+    "id": "repo_love_potion:love_dust"
+  },
+  "experience": 3,
+  "cookingtime": 2000
+}

@@ -2,8 +2,7 @@
   "effect.repo_love_potion.love": "Love",
   "item.repo_love_potion.heart_jar": "Heart Jar",
   "item.repo_love_potion.i_love_disc": "Music Disc",
-  "item.repo_love_potion.i_love_disc.desc": "I Love",
-  "item.repo_love_potion.incomplete_unpolished_love_core": "Incomplete Unpolished Love Core",
+  "item.repo_love_potion.i_love_disc.desc": "goldensurfer - I Love",
   "item.repo_love_potion.love_core": "Love Core",
   "item.repo_love_potion.love_dust": "Love Dust",
   "item.repo_love_potion.love_potion": "Love Potion",
@@ -12,6 +11,5 @@
   "subtitles.glug_glug": "*strokes balls*",
   "subtitles.holy_moly": "that yoinkety sploinkety",
   "subtitles.i_love_song": "sawyer forgot",
-  "subtitles.yipee": "slayyyy queen",
-  "tip.repo_love_potion.love_tip": "Lizzy is a not very nice person!"
+  "subtitles.yipee": "slayyyy queen"
 }

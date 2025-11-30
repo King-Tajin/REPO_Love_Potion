@@ -15,7 +15,8 @@ import java.util.WeakHashMap;
 
 public class PlayerLoveEffectHandler {
 
-    private static final long BREED_COOLDOWN_TICKS = 60L;
+    private static final long BREED_COOLDOWN_TICKS = 800L;
+    private static final double BREED_CHANCE = 0.1;
     private final Map<UUID, Long> lastBreedTime = new WeakHashMap<>();
 
     @SubscribeEvent
@@ -25,22 +26,23 @@ public class PlayerLoveEffectHandler {
 
         if (level.isClientSide) return;
         if (!player.hasEffect(RepoLovePotionMobEffects.LOVE)) return;
+        if (level.random.nextDouble() < BREED_CHANCE) {
+            long gameTime = level.getGameTime();
+            double radius = 12.0D;
 
-        long gameTime = level.getGameTime();
-        double radius = 12.0D;
+            List<Animal> animals = level.getEntitiesOfClass(Animal.class, player.getBoundingBox().inflate(radius));
 
-        List<Animal> animals = level.getEntitiesOfClass(Animal.class, player.getBoundingBox().inflate(radius));
+            for (Animal animal : animals) {
+                UUID id = animal.getUUID();
 
-        for (Animal animal : animals) {
-            UUID id = animal.getUUID();
+                if (animal.isBaby() || animal.isInLove()) continue;
 
-            if (animal.isBaby() || animal.isInLove()) continue;
+                long lastTime = lastBreedTime.getOrDefault(id, 0L);
+                if (gameTime - lastTime < BREED_COOLDOWN_TICKS) continue;
 
-            long lastTime = lastBreedTime.getOrDefault(id, 0L);
-            if (gameTime - lastTime < BREED_COOLDOWN_TICKS) continue;
-
-            animal.setInLove(player);
-            lastBreedTime.put(id, gameTime);
+                animal.setInLove(player);
+                lastBreedTime.put(id, gameTime);
+            }
         }
     }
 }

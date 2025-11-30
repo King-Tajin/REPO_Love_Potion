@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "repo_love_potion:item/ulovecore"
-  }
-}
