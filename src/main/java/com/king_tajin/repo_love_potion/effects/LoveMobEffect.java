@@ -4,6 +4,7 @@ package com.king_tajin.repo_love_potion.effects;
 import com.king_tajin.repo_love_potion.init.RepoLovePotionParticleTypes;
 import com.king_tajin.repo_love_potion.init.RepoLovePotionSounds;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -21,6 +22,7 @@ import net.neoforged.neoforge.common.EffectCures;
 import net.tslat.effectslib.api.ExtendedMobEffect;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.joml.Vector3f;
 
 import java.util.Set;
 
@@ -31,7 +33,7 @@ public class LoveMobEffect extends ExtendedMobEffect {
 
     @Override
     public @NotNull ParticleOptions createParticleOptions(@NotNull MobEffectInstance mobEffectInstance) {
-        return RepoLovePotionParticleTypes.BLANK_PARTICLE.get();
+        return new DustParticleOptions(new Vector3f(0, 0, 0), 0.0f);
     }
 
     @Override

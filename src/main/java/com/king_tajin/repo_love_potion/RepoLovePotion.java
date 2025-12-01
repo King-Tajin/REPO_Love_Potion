@@ -13,7 +13,6 @@ public class RepoLovePotion {
 	public static final String MODID = "repo_love_potion";
 
 	public RepoLovePotion(IEventBus modEventBus) {
-		NeoForge.EVENT_BUS.register(this);
 		RepoLovePotionSounds.REGISTRY.register(modEventBus);
 
 		RepoLovePotionItems.REGISTRY.register(modEventBus);

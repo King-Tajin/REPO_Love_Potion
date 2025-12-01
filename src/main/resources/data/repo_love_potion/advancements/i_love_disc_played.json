@@ -1,0 +1,32 @@
+{
+  "display": {
+    "icon": {
+      "item": "repo_love_potion:i_love_disc"
+    },
+    "title": {
+      "translate": "advancement.repo_love_potion.i_love_disc_played.title"
+    },
+    "description": {
+      "translate": "advancement.repo_love_potion.i_love_disc_played.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "played_disc": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "location": {
+          "block": {
+            "blocks": ["minecraft:jukebox"]
+          }
+        },
+        "item": {
+          "items": ["repo_love_potion:i_love_disc"]
+        }
+      }
+    }
+  }
+}
