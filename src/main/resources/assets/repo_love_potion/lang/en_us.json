@@ -7,9 +7,11 @@
   "item.repo_love_potion.love_dust": "Love Dust",
   "item.repo_love_potion.love_potion": "Love Potion",
   "item.repo_love_potion.unpolished_love_core": "Unpolished Love Core",
-  "subtitles.bluh_bluh": "ARK!!!!!!!",
-  "subtitles.glug_glug": "*strokes balls*",
-  "subtitles.holy_moly": "that yoinkety sploinkety",
-  "subtitles.i_love_song": "sawyer forgot",
-  "subtitles.yipee": "slayyyy queen"
+  "subtitles.bluh_bluh": "nerd talk",
+  "subtitles.glug_glug": "*drinking*",
+  "subtitles.holy_moly": "the taxman is happy",
+  "subtitles.i_love_song": "i looooove",
+  "subtitles.yipee": "*semibot noises*",
+  "advancement.repo_love_potion.love_potion_brewed.title": "Retrieve, Extract, & Profit Operation",
+  "advancement.repo_love_potion.love_potion_brewed.description": "Brew a Love Potion"
 }

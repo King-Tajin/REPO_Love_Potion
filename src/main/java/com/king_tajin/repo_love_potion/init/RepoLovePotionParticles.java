@@ -9,9 +9,5 @@ public class RepoLovePotionParticles {
                 RepoLovePotionParticleTypes.LOVE_PARTICLE.get(),
                 LoveParticle::provider
         );
-        event.registerSpriteSet(
-                RepoLovePotionParticleTypes.BLANK_PARTICLE.get(),
-                LoveParticle::provider
-        );
     }
 }

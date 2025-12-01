@@ -99,7 +99,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'curse.maven:tslateffectslib-700382:5882017'
+    implementation "curse.maven:tslateffectslib-700382:5882017"
 }
 
 var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {

@@ -2,13 +2,13 @@
 package com.king_tajin.repo_love_potion.item;
 
 import com.king_tajin.repo_love_potion.init.RepoLovePotionMobEffects;
+import com.king_tajin.repo_love_potion.init.RepoLovePotionSounds;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.protocol.game.ClientboundSoundPacket;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
@@ -82,29 +82,25 @@ public class LovePotionItem extends Item {
 
             serverPlayer.getCooldowns().addCooldown(stack.getItem(), COOLDOWN);
 
-            SoundEvent soundEvent = BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("repo_love_potion:bluh_bluh"));
+            SoundEvent soundEvent = RepoLovePotionSounds.BLUH_BLUH.get();
 			long seed = serverPlayer.getRandom().nextLong();
 			double radius = 24.0;
     		Vec3 sourcePos = serverPlayer.position();
-            Holder<SoundEvent> soundHolder = null;
-            if (soundEvent != null) {
-                soundHolder = BuiltInRegistries.SOUND_EVENT.wrapAsHolder(soundEvent);
-            }
+            Holder<SoundEvent> soundHolder;
+            soundHolder = BuiltInRegistries.SOUND_EVENT.wrapAsHolder(soundEvent);
 
             for (ServerPlayer other : serverPlayer.serverLevel().players()) {
 			    if (other.position().distanceTo(sourcePos) <= radius) {
-                    if (soundHolder != null) {
-                        other.connection.send(new ClientboundSoundPacket(
-                            soundHolder,
-                            SoundSource.PLAYERS,
-                            sourcePos.x,
-							sourcePos.y,
-							sourcePos.z,
-                            1.0f,
-                            1.0f,
-                            seed
-                        ));
-                    }
+                    other.connection.send(new ClientboundSoundPacket(
+                        soundHolder,
+                        SoundSource.PLAYERS,
+                        sourcePos.x,
+                        sourcePos.y,
+                        sourcePos.z,
+                        1.0f,
+                        1.0f,
+                        seed
+                    ));
                 }
 			}
 

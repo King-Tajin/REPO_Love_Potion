@@ -161,7 +161,6 @@ public class WordLists {
             "Pillager",
             "Ravager",
             "Shulker",
-            "Shulker",
             "Silverfish",
             "Skeleton",
             "Slime",

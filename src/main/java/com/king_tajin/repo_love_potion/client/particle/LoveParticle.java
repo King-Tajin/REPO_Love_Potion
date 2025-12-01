@@ -14,17 +14,12 @@ public class LoveParticle extends TextureSheetParticle {
 		return new LoveParticleProvider(spriteSet);
 	}
 
-	public static class LoveParticleProvider implements ParticleProvider<SimpleParticleType> {
-		private final SpriteSet spriteSet;
+    public record LoveParticleProvider(SpriteSet spriteSet) implements ParticleProvider<SimpleParticleType> {
 
-		public LoveParticleProvider(SpriteSet spriteSet) {
-			this.spriteSet = spriteSet;
-		}
-
-		public Particle createParticle(@NotNull SimpleParticleType typeIn, @NotNull ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-			return new LoveParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed, this.spriteSet);
-		}
-	}
+        public Particle createParticle(@NotNull SimpleParticleType typeIn, @NotNull ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+            return new LoveParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed, this.spriteSet);
+        }
+    }
 	private final SpriteSet spriteSet;
 
 	protected LoveParticle(ClientLevel world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, SpriteSet textures) {

@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "item": "repo_love_potion:love_potion"
+    },
+    "title": {
+      "translate": "advancement.repo_love_potion.love_potion_brewed.title"
+    },
+    "description": {
+      "translate": "advancement.repo_love_potion.love_potion_brewed.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "brewed_love_potion": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["repo_love_potion:love_potion"]
+          }
+        ]
+      }
+    }
+  }
+}
