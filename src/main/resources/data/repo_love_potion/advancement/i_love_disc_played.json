@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:story/root",
+  "criteria": {
+    "has_disc": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "repo_love_potion:i_love_disc"
+          }
+        ]
+      }
+    }
+  },
+  "display": {
+    "icon": {
+      "id": "repo_love_potion:i_love_disc"
+    },
+    "title": {
+      "translate": "advancement.repo_love_potion.i_love_disc_played.title"
+    },
+    "description": {
+      "translate": "advancement.repo_love_potion.i_love_disc_played.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "requirements": [
+    [
+      "has_disc"
+    ]
+  ]
+}
