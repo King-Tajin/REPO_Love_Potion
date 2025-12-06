@@ -35,11 +35,11 @@ public class LoveMobEffect extends ExtendedMobEffect {
     public @NotNull ParticleOptions createParticleOptions(@NotNull MobEffectInstance mobEffectInstance) {
         return new DustParticleOptions(new Vector3f(0, 0, 0), 0.0f);
     }
-
-    @Override
-    public void fillEffectCures(Set<EffectCure> cures, @NotNull MobEffectInstance effectInstance) {
-        cures.add(EffectCures.HONEY);
-    }
+    //removed for continuity
+    //@Override
+    //public void fillEffectCures(Set<EffectCure> cures, @NotNull MobEffectInstance effectInstance) {
+    //    cures.add(EffectCures.HONEY);
+    //}
 
     @Override
     public boolean shouldTickEffect(@Nullable MobEffectInstance effectInstance, @Nullable LivingEntity entity, int ticksRemaining, int amplifier) {
