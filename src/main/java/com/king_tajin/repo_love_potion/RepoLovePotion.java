@@ -31,6 +31,8 @@ public class RepoLovePotion {
 
 		NeoForge.EVENT_BUS.register(CreeperLoveAIHandler.class);
 
+        NeoForge.EVENT_BUS.register(JukeboxFlowerSpawnHandler.class);
+
         NeoForge.EVENT_BUS.register(ChargedCreeperDropHandler.class);
 
         NeoForge.EVENT_BUS.register(LovePotionBrewingRecipe.class);
