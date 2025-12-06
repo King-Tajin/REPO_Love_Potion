@@ -81,7 +81,7 @@ public class JukeboxFlowerSpawnHandler {
 
             long elapsed = currentTime - data.startTime;
 
-            if (elapsed % 40 == 0) {
+            if (elapsed % 20 == 0) {
                 BlockState state = level.getBlockState(pos);
                 if (!state.is(Blocks.JUKEBOX)) {
                     iterator.remove();
@@ -117,7 +117,7 @@ public class JukeboxFlowerSpawnHandler {
                 }
             } else if (data.phase == 2) {
                 int flowerCount = countFlowersNearby(level, pos);
-                int maxFlowers = 20;
+                int maxFlowers = 35;
 
                 if (flowerCount >= maxFlowers) {
                     iterator.remove();
