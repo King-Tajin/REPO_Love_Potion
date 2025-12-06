@@ -2,8 +2,10 @@ package com.king_tajin.repo_love_potion.events;
 
 import com.king_tajin.repo_love_potion.init.RepoLovePotionItems;
 import com.king_tajin.repo_love_potion.init.RepoLovePotionParticleTypes;
+import com.king_tajin.repo_love_potion.init.RepoLovePotionSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.projectile.ThrownPotion;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -27,7 +29,6 @@ public class JukeboxFlowerSpawnHandler {
     private static final int SPAWN_RADIUS = 12;
     private static final int RAIN_DURATION_TICKS = 180;
     private static final int WAIT_DURATION_TICKS = 120;
-    private static final int POTION_SPAWN_INTERVAL = 5;
 
     private static final Map<BlockPos, FlowerSpawnData> activeSequences = new HashMap<>();
 
@@ -99,7 +100,7 @@ public class JukeboxFlowerSpawnHandler {
 
             if (data.phase == 0) {
                 if (elapsed < RAIN_DURATION_TICKS) {
-                    if (elapsed % POTION_SPAWN_INTERVAL == 0) {
+                    if (elapsed % 5 == 0) {
                         spawnWaterPotion(level, pos);
                     }
                     if (elapsed % 5 == 0) {
@@ -122,7 +123,7 @@ public class JukeboxFlowerSpawnHandler {
                 if (flowerCount >= maxFlowers) {
                     iterator.remove();
                 } else {
-                    if ((currentTime - (data.startTime + RAIN_DURATION_TICKS + WAIT_DURATION_TICKS)) % 10 == 0) {
+                    if ((currentTime - (data.startTime + RAIN_DURATION_TICKS + WAIT_DURATION_TICKS)) % 30 == 0) {
                         trySpawnSingleFlower(level, pos);
                     }
                     if (elapsed % 5 == 0) {
@@ -194,6 +195,8 @@ public class JukeboxFlowerSpawnHandler {
                     serverLevel.sendParticles(ParticleTypes.HAPPY_VILLAGER,
                             checkPos.getX() + 0.5, checkPos.getY() + 1.5, checkPos.getZ() + 0.5,
                             5, 0.3, 0.3, 0.3, 0.05);
+                    serverLevel.playSound(null, checkPos, RepoLovePotionSounds.GLUG_GLUG.get(), SoundSource.BLOCKS,
+                            2f, 1.0f + (level.random.nextFloat() * 0.5f - 0.25f));
                 }
 
                 return;
