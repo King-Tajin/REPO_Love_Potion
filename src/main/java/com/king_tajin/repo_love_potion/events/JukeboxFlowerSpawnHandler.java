@@ -103,7 +103,7 @@ public class JukeboxFlowerSpawnHandler {
                     if (elapsed % 5 == 0) {
                         spawnWaterPotion(level, pos);
                     }
-                    if (elapsed % 5 == 0) {
+                    if (elapsed % 10 == 0) {
                         spawnFlowerParticles(level, pos);
                     }
                 } else {
@@ -113,7 +113,7 @@ public class JukeboxFlowerSpawnHandler {
                 if (elapsed >= RAIN_DURATION_TICKS + WAIT_DURATION_TICKS) {
                     data.phase = 2;
                 }
-                if (elapsed % 5 == 0) {
+                if (elapsed % 10 == 0) {
                     spawnFlowerParticles(level, pos);
                 }
             } else if (data.phase == 2) {
@@ -126,7 +126,7 @@ public class JukeboxFlowerSpawnHandler {
                     if ((currentTime - (data.startTime + RAIN_DURATION_TICKS + WAIT_DURATION_TICKS)) % 30 == 0) {
                         trySpawnSingleFlower(level, pos);
                     }
-                    if (elapsed % 5 == 0) {
+                    if (elapsed % 10 == 0) {
                         spawnFlowerParticles(level, pos);
                     }
                 }
