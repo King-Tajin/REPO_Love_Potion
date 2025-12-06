@@ -32,96 +32,96 @@ import java.util.regex.Pattern;
 import static com.king_tajin.repo_love_potion.WordLists.*;
 
 public class LovePotionItem extends Item {
-	private static final Random RANDOM = new Random();
-	private static final double MAX_DISTANCE = 24.0;
-	private static final int USE_DURATION = 40;
-	private static final int EFFECT_DURATION = 900;
-	private static final int COOLDOWN = 260;
-	private static final String DEFAULT_PLAYER_NAME = "this potion";
-	
+    private static final Random RANDOM = new Random();
+    private static final double MAX_DISTANCE = 24.0;
+    private static final int USE_DURATION = 40;
+    private static final int EFFECT_DURATION = 900;
+    private static final int COOLDOWN = 260;
+    private static final String DEFAULT_PLAYER_NAME = "this potion";
 
-	public LovePotionItem() {
-	    super(new Properties()
-	        .stacksTo(1)
-	        .rarity(Rarity.EPIC)
-	        .food(new FoodProperties.Builder()
-	            .nutrition(0)
-	            .saturationModifier(0.0f)
-	            .alwaysEdible()
-	            .build()));
-	}
 
-	@Override
-	public @NotNull UseAnim getUseAnimation(@NotNull ItemStack itemstack) {
-		return UseAnim.DRINK;
-	}
-
-	@Override
-	public int getUseDuration(@NotNull ItemStack itemstack, @NotNull LivingEntity livingEntity) {
-		return USE_DURATION;
-	}
+    public LovePotionItem() {
+        super(new Properties()
+                .stacksTo(1)
+                .rarity(Rarity.EPIC)
+                .food(new FoodProperties.Builder()
+                        .nutrition(0)
+                        .saturationModifier(0.0f)
+                        .alwaysEdible()
+                        .build()));
+    }
 
     @Override
-	public @NotNull ItemStack finishUsingItem(@NotNull ItemStack stack, Level level, @NotNull LivingEntity entity) {
+    public @NotNull UseAnim getUseAnimation(@NotNull ItemStack itemstack) {
+        return UseAnim.DRINK;
+    }
+
+    @Override
+    public int getUseDuration(@NotNull ItemStack itemstack, @NotNull LivingEntity livingEntity) {
+        return USE_DURATION;
+    }
+
+    @Override
+    public @NotNull ItemStack finishUsingItem(@NotNull ItemStack stack, Level level, @NotNull LivingEntity entity) {
 
         if (!level.isClientSide && entity instanceof ServerPlayer serverPlayer) {
-	        List<ServerPlayer> players = serverPlayer.serverLevel().players().stream()
-	            .filter(p -> !p.equals(serverPlayer))
-	            .toList();
-	
-	        ServerPlayer nearest = null;
-	        double closestDistance = Double.MAX_VALUE;
-	        
-	        for (ServerPlayer other : players) {
-	            double distance = other.distanceTo(serverPlayer);
-	            if (distance <= MAX_DISTANCE && distance < closestDistance) {
-	                closestDistance = distance;
-	                nearest = other;
-	            }
-	        }
+            List<ServerPlayer> players = serverPlayer.serverLevel().players().stream()
+                    .filter(p -> !p.equals(serverPlayer))
+                    .toList();
+
+            ServerPlayer nearest = null;
+            double closestDistance = Double.MAX_VALUE;
+
+            for (ServerPlayer other : players) {
+                double distance = other.distanceTo(serverPlayer);
+                if (distance <= MAX_DISTANCE && distance < closestDistance) {
+                    closestDistance = distance;
+                    nearest = other;
+                }
+            }
 
             serverPlayer.getCooldowns().addCooldown(stack.getItem(), COOLDOWN);
 
             SoundEvent soundEvent = RepoLovePotionSounds.BLUH_BLUH.get();
-			long seed = serverPlayer.getRandom().nextLong();
-			double radius = 24.0;
-    		Vec3 sourcePos = serverPlayer.position();
+            long seed = serverPlayer.getRandom().nextLong();
+            double radius = 24.0;
+            Vec3 sourcePos = serverPlayer.position();
             Holder<SoundEvent> soundHolder;
             soundHolder = BuiltInRegistries.SOUND_EVENT.wrapAsHolder(soundEvent);
 
             for (ServerPlayer other : serverPlayer.serverLevel().players()) {
-			    if (other.position().distanceTo(sourcePos) <= radius) {
+                if (other.position().distanceTo(sourcePos) <= radius) {
                     other.connection.send(new ClientboundSoundPacket(
-                        soundHolder,
-                        SoundSource.PLAYERS,
-                        sourcePos.x,
-                        sourcePos.y,
-                        sourcePos.z,
-                        1.0f,
-                        1.0f,
-                        seed
+                            soundHolder,
+                            SoundSource.PLAYERS,
+                            sourcePos.x,
+                            sourcePos.y,
+                            sourcePos.z,
+                            1.0f,
+                            1.0f,
+                            seed
                     ));
                 }
-			}
+            }
 
-			int thresholdTicks = EFFECT_DURATION + 40;
+            int thresholdTicks = EFFECT_DURATION + 40;
 
-			MobEffectInstance loveEffect = new MobEffectInstance(RepoLovePotionMobEffects.LOVE, EFFECT_DURATION, 0, false, true, true);
-			MobEffectInstance loveEffect2 = new MobEffectInstance(RepoLovePotionMobEffects.LOVE, EFFECT_DURATION - 30, 0, false, true, true);
+            MobEffectInstance loveEffect = new MobEffectInstance(RepoLovePotionMobEffects.LOVE, EFFECT_DURATION, 0, false, true, true);
+            MobEffectInstance loveEffect2 = new MobEffectInstance(RepoLovePotionMobEffects.LOVE, EFFECT_DURATION - 30, 0, false, true, true);
 
-			MobEffectInstance currentSelf = serverPlayer.getEffect(RepoLovePotionMobEffects.LOVE);
-			if (currentSelf == null || currentSelf.getDuration() <= thresholdTicks) {
-				serverPlayer.removeEffect(RepoLovePotionMobEffects.LOVE);
-				serverPlayer.addEffect(loveEffect);
-			}
+            MobEffectInstance currentSelf = serverPlayer.getEffect(RepoLovePotionMobEffects.LOVE);
+            if (currentSelf == null || currentSelf.getDuration() <= thresholdTicks) {
+                serverPlayer.removeEffect(RepoLovePotionMobEffects.LOVE);
+                serverPlayer.addEffect(loveEffect);
+            }
 
-			if (nearest != null) {
-				MobEffectInstance currentNearest = nearest.getEffect(RepoLovePotionMobEffects.LOVE);
-				if (currentNearest == null || currentNearest.getDuration() <= thresholdTicks) {
-					nearest.removeEffect(RepoLovePotionMobEffects.LOVE);
-					nearest.addEffect(loveEffect2);
-				}
-			}
+            if (nearest != null) {
+                MobEffectInstance currentNearest = nearest.getEffect(RepoLovePotionMobEffects.LOVE);
+                if (currentNearest == null || currentNearest.getDuration() <= thresholdTicks) {
+                    nearest.removeEffect(RepoLovePotionMobEffects.LOVE);
+                    nearest.addEffect(loveEffect2);
+                }
+            }
 
             String transitiveVerb = TRANSITIVE_VERBS[RANDOM.nextInt(TRANSITIVE_VERBS.length)];
             String intransitiveVerb = INTRANSITIVE_VERBS[RANDOM.nextInt(INTRANSITIVE_VERBS.length)];
@@ -129,78 +129,87 @@ public class LovePotionItem extends Item {
             String intensifier = INTENSIFIERS[RANDOM.nextInt(INTENSIFIERS.length)];
             String adjective = ADJECTIVES[RANDOM.nextInt(ADJECTIVES.length)];
             String noun = NOUNS[RANDOM.nextInt(NOUNS.length)];
-			String mob = MOB[RANDOM.nextInt(MOB.length)];
+            String mob = MOB[RANDOM.nextInt(MOB.length)];
 
             String playerName = (nearest != null) ? nearest.getName().getString() : DEFAULT_PLAYER_NAME;
 
             String template = MESSAGES_WITH_PLAYER[RANDOM.nextInt(MESSAGES_WITH_PLAYER.length)];
 
-			sendFormattedMessage(serverPlayer,
-                template,
-                Map.of(
-                    "playerName", Component.literal(playerName).withStyle(ChatFormatting.GOLD),
-                    "adverb", Component.literal(adverb).withStyle(ChatFormatting.DARK_PURPLE, ChatFormatting.BOLD),
-                    "intensifier", Component.literal(intensifier).withStyle(ChatFormatting.DARK_PURPLE, ChatFormatting.BOLD),
-                    "intransitiveVerb", Component.literal(intransitiveVerb).withStyle(ChatFormatting.DARK_PURPLE, ChatFormatting.BOLD),
-                    "transitiveVerb", Component.literal(transitiveVerb).withStyle(ChatFormatting.DARK_PURPLE, ChatFormatting.BOLD),
-                    "adjective", Component.literal(adjective).withStyle(ChatFormatting.DARK_PURPLE, ChatFormatting.BOLD),
-                    "noun", Component.literal(noun).withStyle(ChatFormatting.DARK_PURPLE, ChatFormatting.BOLD),
-					"mob", Component.literal(mob).withStyle(ChatFormatting.BLUE, ChatFormatting.BOLD)
-                ),
-                ChatFormatting.DARK_PURPLE
+            MutableComponent fullMessage = Component.empty()
+                    .append(Component.literal(serverPlayer.getName().getString()).withStyle(ChatFormatting.WHITE))
+                    .append(Component.literal(": ").withStyle(ChatFormatting.WHITE));
+
+            MutableComponent messageContent = buildFormattedMessage(
+                    template,
+                    Map.of(
+                            "playerName", Component.literal(playerName).withStyle(ChatFormatting.GOLD),
+                            "adverb", Component.literal(adverb).withStyle(ChatFormatting.DARK_PURPLE, ChatFormatting.BOLD),
+                            "intensifier", Component.literal(intensifier).withStyle(ChatFormatting.DARK_PURPLE, ChatFormatting.BOLD),
+                            "intransitiveVerb", Component.literal(intransitiveVerb).withStyle(ChatFormatting.DARK_PURPLE, ChatFormatting.BOLD),
+                            "transitiveVerb", Component.literal(transitiveVerb).withStyle(ChatFormatting.DARK_PURPLE, ChatFormatting.BOLD),
+                            "adjective", Component.literal(adjective).withStyle(ChatFormatting.DARK_PURPLE, ChatFormatting.BOLD),
+                            "noun", Component.literal(noun).withStyle(ChatFormatting.DARK_PURPLE, ChatFormatting.BOLD),
+                            "mob", Component.literal(mob).withStyle(ChatFormatting.BLUE, ChatFormatting.BOLD)
+                    )
             );
+
+            fullMessage.append(messageContent);
+
+            // Send to all players
+            for (ServerPlayer onlinePlayer : serverPlayer.serverLevel().players()) {
+                onlinePlayer.sendSystemMessage(fullMessage);
+            }
         }
 
         return stack;
     }
 
-	private String pluralizeVerb(String verb) {
-		if (verb.endsWith("e")) {
-			return verb + "s";
-		} else {
-			return verb + "es";
-		}
-	}
-	public void sendFormattedMessage(ServerPlayer player, String template, Map<String, Component> placeholders, ChatFormatting defaultColor) {
-		Pattern pattern = Pattern.compile("\\{(\\w+?)(s)?}");
-		Matcher matcher = pattern.matcher(template);
+    private String pluralizeVerb(String verb) {
+        if (verb.endsWith("e")) {
+            return verb + "s";
+        } else {
+            return verb + "es";
+        }
+    }
 
-		int lastEnd = 0;
-		MutableComponent message = Component.empty();
+    private MutableComponent buildFormattedMessage(String template, Map<String, Component> placeholders) {
+        Pattern pattern = Pattern.compile("\\{(\\w+?)(s)?}");
+        Matcher matcher = pattern.matcher(template);
 
-		while (matcher.find()) {
-			String before = template.substring(lastEnd, matcher.start());
-			String key = matcher.group(1);
-			boolean isPlural = matcher.group(2) != null;
+        int lastEnd = 0;
+        MutableComponent message = Component.empty();
 
-			if (!before.isEmpty()) {
-				message.append(Component.literal(before).withStyle(defaultColor));
-			}
+        while (matcher.find()) {
+            String before = template.substring(lastEnd, matcher.start());
+            String key = matcher.group(1);
+            boolean isPlural = matcher.group(2) != null;
 
-			Component base = placeholders.get(key);
+            if (!before.isEmpty()) {
+                message.append(Component.literal(before).withStyle(ChatFormatting.DARK_PURPLE));
+            }
 
-			if (base != null) {
-				String plain = base.getString();
-				if (isPlural) {
-					String plural = pluralizeVerb(plain);
-					message.append(Component.literal(plural).withStyle(base.getStyle()));
-				} else {
-					message.append(base);
-				}
-			} else {
-				message.append(Component.literal("{" + key + (isPlural ? "s" : "") + "}").withStyle(ChatFormatting.RED));
-			}
+            Component base = placeholders.get(key);
 
-			lastEnd = matcher.end();
-		}
+            if (base != null) {
+                String plain = base.getString();
+                if (isPlural) {
+                    String plural = pluralizeVerb(plain);
+                    message.append(Component.literal(plural).withStyle(base.getStyle()));
+                } else {
+                    message.append(base);
+                }
+            } else {
+                message.append(Component.literal("{" + key + (isPlural ? "s" : "") + "}").withStyle(ChatFormatting.RED));
+            }
 
-		if (lastEnd < template.length()) {
-			String after = template.substring(lastEnd);
-			message.append(Component.literal(after).withStyle(defaultColor));
-		}
+            lastEnd = matcher.end();
+        }
 
-		for (ServerPlayer onlinePlayer : player.serverLevel().players()) {
-			onlinePlayer.sendSystemMessage(message);
-		}
-	}
+        if (lastEnd < template.length()) {
+            String after = template.substring(lastEnd);
+            message.append(Component.literal(after).withStyle(ChatFormatting.DARK_PURPLE));
+        }
+
+        return message;
+    }
 }
