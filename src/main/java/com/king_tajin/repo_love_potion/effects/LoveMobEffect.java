@@ -1,9 +1,13 @@
 package com.king_tajin.repo_love_potion.effects;
 
 
+import com.king_tajin.repo_love_potion.RepoLovePotion;
 import com.king_tajin.repo_love_potion.init.RepoLovePotionParticleTypes;
 import com.king_tajin.repo_love_potion.init.RepoLovePotionSounds;
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.server.level.ServerLevel;
@@ -13,16 +17,20 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.scores.PlayerTeam;
 import net.minecraft.world.scores.Scoreboard;
 import net.minecraft.world.scores.Team;
+import net.tslat.effectslib.api.EffectOverlayRenderer;
 import net.tslat.effectslib.api.ExtendedMobEffect;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
 
 public class LoveMobEffect extends ExtendedMobEffect {
+    private static final ResourceLocation OVERLAY_TEXTURE =
+            ResourceLocation.fromNamespaceAndPath(RepoLovePotion.MODID, "textures/mob_effect/love_overlay.png");
     public LoveMobEffect() {
         super(MobEffectCategory.BENEFICIAL, 0xffff0099);
     }
@@ -42,6 +50,27 @@ public class LoveMobEffect extends ExtendedMobEffect {
     public boolean shouldTickEffect(@Nullable MobEffectInstance effectInstance, @Nullable LivingEntity entity, int ticksRemaining, int amplifier) {
         return true;
     }
+
+    @Override
+    public @Nullable EffectOverlayRenderer getOverlayRenderer() {
+        return (poseStack, deltaTracker, effectInstance) -> {
+            Minecraft mc = Minecraft.getInstance();
+            GuiGraphics guiGraphics = new GuiGraphics(mc, mc.renderBuffers().bufferSource());
+
+            int screenWidth = mc.getWindow().getGuiScaledWidth();
+            int screenHeight = mc.getWindow().getGuiScaledHeight();
+
+            RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 0.85f);
+            RenderSystem.enableBlend();
+            RenderSystem.defaultBlendFunc();
+
+            guiGraphics.blit(OVERLAY_TEXTURE, 0, 0, 0, 0, screenWidth, screenHeight, screenWidth, screenHeight);
+
+            RenderSystem.disableBlend();
+            RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
+        };
+    }
+
     @Override
     public boolean tick(LivingEntity entity, @Nullable MobEffectInstance effectInstance, int amplifier) {
 
