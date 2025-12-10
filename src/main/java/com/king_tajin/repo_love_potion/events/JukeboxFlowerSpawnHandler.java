@@ -3,6 +3,7 @@ package com.king_tajin.repo_love_potion.events;
 import com.king_tajin.repo_love_potion.init.RepoLovePotionItems;
 import com.king_tajin.repo_love_potion.init.RepoLovePotionParticleTypes;
 import com.king_tajin.repo_love_potion.init.RepoLovePotionSounds;
+import com.king_tajin.repo_love_potion.item.ILoveDiscItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundSource;
@@ -13,6 +14,7 @@ import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.JukeboxBlock;
 import net.minecraft.world.level.block.entity.JukeboxBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -34,7 +36,7 @@ public class JukeboxFlowerSpawnHandler {
 
     private static class FlowerSpawnData {
         long startTime;
-        int phase; // 0 = rain, 1 = wait, 2 = flowers
+        int phase; // 0 = rain, 1 = wait, 2 = flowers, 3 = particles only
 
         FlowerSpawnData(long startTime) {
             this.startTime = startTime;
@@ -89,6 +91,16 @@ public class JukeboxFlowerSpawnHandler {
                     continue;
                 }
 
+                if (elapsed > ILoveDiscItem.SONG_DURATION_TICKS) {
+                    iterator.remove();
+                    continue;
+                }
+
+                if (!state.getValue(JukeboxBlock.HAS_RECORD)) {
+                    iterator.remove();
+                    continue;
+                }
+
                 if (level.getBlockEntity(pos) instanceof JukeboxBlockEntity jukebox) {
                     ItemStack record = jukebox.getTheItem();
                     if (record.isEmpty() || !record.is(RepoLovePotionItems.I_LOVE_DISC.get())) {
@@ -121,14 +133,19 @@ public class JukeboxFlowerSpawnHandler {
                 int maxFlowers = 35;
 
                 if (flowerCount >= maxFlowers) {
-                    iterator.remove();
+                    data.phase = 3;
                 } else {
                     if ((currentTime - (data.startTime + RAIN_DURATION_TICKS + WAIT_DURATION_TICKS)) % 30 == 0) {
                         trySpawnSingleFlower(level, pos);
                     }
-                    if (elapsed % 10 == 0) {
-                        spawnFlowerParticles(level, pos);
-                    }
+                }
+
+                if (elapsed % 10 == 0) {
+                    spawnFlowerParticles(level, pos);
+                }
+            } else if (data.phase == 3) {
+                if (elapsed % 10 == 0) {
+                    spawnFlowerParticles(level, pos);
                 }
             }
         }
@@ -207,8 +224,8 @@ public class JukeboxFlowerSpawnHandler {
     private static int countFlowersNearby(Level level, BlockPos center) {
         int count = 0;
 
-        for (int x = -JukeboxFlowerSpawnHandler.SPAWN_RADIUS; x <= JukeboxFlowerSpawnHandler.SPAWN_RADIUS; x++) {
-            for (int z = -JukeboxFlowerSpawnHandler.SPAWN_RADIUS; z <= JukeboxFlowerSpawnHandler.SPAWN_RADIUS; z++) {
+        for (int x = -SPAWN_RADIUS; x <= SPAWN_RADIUS; x++) {
+            for (int z = -SPAWN_RADIUS; z <= SPAWN_RADIUS; z++) {
                 for (int y = -2; y <= 2; y++) {
                     BlockPos checkPos = center.offset(x, y, z);
                     BlockState state = level.getBlockState(checkPos);
