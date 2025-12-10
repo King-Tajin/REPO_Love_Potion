@@ -60,7 +60,7 @@ public class LoveMobEffect extends ExtendedMobEffect {
             int screenWidth = mc.getWindow().getGuiScaledWidth();
             int screenHeight = mc.getWindow().getGuiScaledHeight();
 
-            RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 0.85f);
+            RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 0.75f);
             RenderSystem.enableBlend();
             RenderSystem.defaultBlendFunc();
 
@@ -115,65 +115,44 @@ public class LoveMobEffect extends ExtendedMobEffect {
         }
         scoreboard.addPlayerToTeam(player.getScoreboardName(), team);
     }
+
     @Override
     public void onExpiry(MobEffectInstance effectInstance, LivingEntity entity) {
-        if (entity instanceof ServerPlayer player) {
-            ServerLevel level = player.serverLevel();
-            Scoreboard scoreboard = level.getScoreboard();
-
-            level.playSound(
-                    null,
-                    entity.blockPosition(),
-                    RepoLovePotionSounds.HOLY_MOLY.get(),
-                    SoundSource.PLAYERS,
-                    1.0F,
-                    1.0F + level.random.nextFloat() * 0.9F - 0.45F
-            );
-
-            PlayerTeam team = scoreboard.getPlayerTeam("love_effect");
-            if (team != null) {
-                scoreboard.removePlayerFromTeam(player.getScoreboardName(), team);
-
-                if (team.getPlayers().isEmpty()) {
-                    scoreboard.removePlayerTeam(team);
-                }
-
-            }
-            if (entity.hasEffect(MobEffects.GLOWING)) {
-                entity.removeEffect(MobEffects.GLOWING);
-            }
-        }
+        cleanupLoveEffect(entity);
     }
+
     @Override
     public boolean onRemove(MobEffectInstance effectInstance, LivingEntity entity) {
+        cleanupLoveEffect(entity);
+        return true;
+    }
 
-        if (entity instanceof ServerPlayer player) {
-            ServerLevel level = player.serverLevel();
-            Scoreboard scoreboard = level.getScoreboard();
+    private void cleanupLoveEffect(LivingEntity entity) {
+        if (!(entity instanceof ServerPlayer player)) return;
 
-            level.playSound(
-                    null,
-                    entity.blockPosition(),
-                    RepoLovePotionSounds.HOLY_MOLY.get(),
-                    SoundSource.PLAYERS,
-                    1.0F,
-                    1.0F + level.random.nextFloat() * 0.9F - 0.45F
-            );
+        ServerLevel level = player.serverLevel();
+        Scoreboard scoreboard = level.getScoreboard();
 
-            PlayerTeam team = scoreboard.getPlayerTeam("love_effect");
-            if (team != null) {
-                scoreboard.removePlayerFromTeam(player.getScoreboardName(), team);
+        level.playSound(
+                null,
+                entity.blockPosition(),
+                RepoLovePotionSounds.HOLY_MOLY.get(),
+                SoundSource.PLAYERS,
+                1.0F,
+                1.0F + level.random.nextFloat() * 0.9F - 0.45F
+        );
 
-                if (team.getPlayers().isEmpty()) {
-                    scoreboard.removePlayerTeam(team);
-                }
+        PlayerTeam team = scoreboard.getPlayerTeam("love_effect");
+        if (team != null) {
+            scoreboard.removePlayerFromTeam(player.getScoreboardName(), team);
 
-            }
-            if (entity.hasEffect(MobEffects.GLOWING)) {
-                entity.removeEffect(MobEffects.GLOWING);
+            if (team.getPlayers().isEmpty()) {
+                scoreboard.removePlayerTeam(team);
             }
         }
 
-        return true;
+        if (entity.hasEffect(MobEffects.GLOWING)) {
+            entity.removeEffect(MobEffects.GLOWING);
+        }
     }
 }
