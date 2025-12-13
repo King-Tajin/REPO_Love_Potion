@@ -60,7 +60,7 @@ public class LoveMobEffect extends ExtendedMobEffect {
             int screenWidth = mc.getWindow().getGuiScaledWidth();
             int screenHeight = mc.getWindow().getGuiScaledHeight();
 
-            RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 0.75f);
+            RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 0.95f);
             RenderSystem.enableBlend();
             RenderSystem.defaultBlendFunc();
 
