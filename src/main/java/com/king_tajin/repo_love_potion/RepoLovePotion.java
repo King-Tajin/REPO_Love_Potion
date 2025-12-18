@@ -5,10 +5,14 @@ import com.king_tajin.repo_love_potion.events.*;
 import com.king_tajin.repo_love_potion.init.*;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
 import java.util.*;
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 
 
 @Mod("repo_love_potion")
@@ -47,6 +51,14 @@ public class RepoLovePotion {
 
         modEventBus.addListener(RepoLovePotionModTabs::buildTabContentsVanilla);
         modEventBus.addListener(RepoLovePotionParticles::onRegisterParticles);
+
+		if (FMLEnvironment.dist == Dist.CLIENT) {
+			ModLoadingContext.get().registerExtensionPoint(
+					IConfigScreenFactory.class,
+					() -> (mc, parent) ->
+							AutoConfig.getConfigScreen(RepoLovePotionConfig.class, parent).get()
+			);
+		}
 
 	}
 

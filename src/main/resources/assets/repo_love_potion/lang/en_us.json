@@ -15,5 +15,10 @@
   "advancement.repo_love_potion.love_potion_brewed.title": "Retrieve, Extract, & Profit Operation",
   "advancement.repo_love_potion.love_potion_brewed.description": "Brew a Love Potion",
   "advancement.repo_love_potion.i_love_disc_played.title": "I Love This Song!",
-  "advancement.repo_love_potion.i_love_disc_played.description": "Obtain the \"I Love\" music disc from a charged creeper"
+  "advancement.repo_love_potion.i_love_disc_played.description": "Obtain the \"I Love\" music disc from a charged creeper",
+  "text.autoconfig.repo_love_potion.title": "Repo Love Potion Config",
+  "text.autoconfig.repo_love_potion.option.enableLoveEffectOverlay": "Enable Love Overlay:",
+  "text.autoconfig.repo_love_potion.option.enableLoveEffectOverlay.@Tooltip": "Whether the overlay renders with the love effect.",
+  "text.autoconfig.repo_love_potion.option.overlayOpacity": "Overlay Opacity:",
+  "text.autoconfig.repo_love_potion.option.overlayOpacity.@Tooltip": "Percentage of how transparent the overlay is."
 }
