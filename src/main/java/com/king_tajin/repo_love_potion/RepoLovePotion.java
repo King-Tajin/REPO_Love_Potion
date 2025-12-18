@@ -29,6 +29,8 @@ public class RepoLovePotion {
 
 		RepoLovePotionItems.REGISTRY.register(modEventBus);
 
+		RepoLovePotionGameRules.register();
+
 		RepoLovePotionModTabs.REGISTRY.register(modEventBus);
 
 		RepoLovePotionMobEffects.REGISTRY.register(modEventBus);

@@ -1,5 +1,6 @@
 package com.king_tajin.repo_love_potion.events;
 
+import com.king_tajin.repo_love_potion.init.RepoLovePotionGameRules;
 import com.king_tajin.repo_love_potion.init.RepoLovePotionItems;
 import com.king_tajin.repo_love_potion.init.RepoLovePotionParticleTypes;
 import com.king_tajin.repo_love_potion.init.RepoLovePotionSounds;
@@ -51,6 +52,10 @@ public class JukeboxFlowerSpawnHandler {
 
         if (level.isClientSide) return;
 
+        if (!level.getGameRules().getBoolean(RepoLovePotionGameRules.RULE_LOVE_MUSIC_FLOWER_SPAWNING)) {
+            return;
+        }
+
         BlockState state = level.getBlockState(pos);
         if (state.is(Blocks.JUKEBOX)) {
             Objects.requireNonNull(level.getServer()).execute(() -> {
@@ -74,6 +79,12 @@ public class JukeboxFlowerSpawnHandler {
     @SubscribeEvent
     public static void onServerTick(ServerTickEvent.Post event) {
         Level level = event.getServer().overworld();
+
+        if (!level.getGameRules().getBoolean(RepoLovePotionGameRules.RULE_LOVE_MUSIC_FLOWER_SPAWNING)) {
+            activeSequences.clear();
+            return;
+        }
+
         long currentTime = level.getGameTime();
         Iterator<Map.Entry<BlockPos, FlowerSpawnData>> iterator = activeSequences.entrySet().iterator();
 
