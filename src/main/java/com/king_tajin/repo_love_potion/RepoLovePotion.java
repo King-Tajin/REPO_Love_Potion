@@ -1,7 +1,10 @@
 package com.king_tajin.repo_love_potion;
 
+import com.king_tajin.repo_love_potion.config.RepoLovePotionConfig;
 import com.king_tajin.repo_love_potion.events.*;
 import com.king_tajin.repo_love_potion.init.*;
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;
@@ -12,7 +15,12 @@ import java.util.*;
 public class RepoLovePotion {
 	public static final String MODID = "repo_love_potion";
 
+	public static RepoLovePotionConfig CONFIG;
+
 	public RepoLovePotion(IEventBus modEventBus) {
+		AutoConfig.register(RepoLovePotionConfig.class, GsonConfigSerializer::new);
+		CONFIG = AutoConfig.getConfigHolder(RepoLovePotionConfig.class).getConfig();
+
 		RepoLovePotionSounds.REGISTRY.register(modEventBus);
 
 		RepoLovePotionItems.REGISTRY.register(modEventBus);

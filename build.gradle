@@ -70,6 +70,7 @@ repositories {
 
 dependencies {
     implementation "curse.maven:tslateffectslib-700382:5882017"
+    implementation "curse.maven:cloth-config-348521:5729127"
 }
 
 var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {

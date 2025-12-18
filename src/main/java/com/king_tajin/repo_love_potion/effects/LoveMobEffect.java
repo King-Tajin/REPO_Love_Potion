@@ -54,13 +54,20 @@ public class LoveMobEffect extends ExtendedMobEffect {
     @Override
     public @Nullable EffectOverlayRenderer getOverlayRenderer() {
         return (poseStack, deltaTracker, effectInstance) -> {
+
+            if (!RepoLovePotion.CONFIG.enableLoveEffectOverlay) {
+                return;
+            }
+
             Minecraft mc = Minecraft.getInstance();
             GuiGraphics guiGraphics = new GuiGraphics(mc, mc.renderBuffers().bufferSource());
 
             int screenWidth = mc.getWindow().getGuiScaledWidth();
             int screenHeight = mc.getWindow().getGuiScaledHeight();
 
-            RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 0.95f);
+            float opacity = RepoLovePotion.CONFIG.overlayOpacity / 100.0f;
+
+            RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, opacity);
             RenderSystem.enableBlend();
             RenderSystem.defaultBlendFunc();
 
